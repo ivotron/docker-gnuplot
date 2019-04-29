@@ -1,5 +1,8 @@
-FROM alpine:3.9
+FROM debian:buster-slim
 
-RUN apk --no-cache add gnuplot
+RUN apt update && \
+    apt install -y gnuplot && \
+    apt autoclean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENTRYPOINT ["gnuplot"]
